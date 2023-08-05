@@ -9,7 +9,12 @@ const ProductsList = () => {
   const getProducts = async () => {
     const response = await fetch("https://dummyjson.com/products");
     const data = await response.json();
+    console.log(data);
     setProducts(data.products);
+  };
+
+  const postProductAboutInfo = () => {
+    localStorage.setItem("productAbout", JSON.stringify());
   };
 
   useEffect(() => {
@@ -45,6 +50,7 @@ const ProductsList = () => {
                 className="about-product"
                 key={item.id}
                 to={`products/${item.id}`}
+                onClick={postProductAboutInfo}
               >
                 Узнать подробнее
               </Link>
