@@ -65,15 +65,28 @@
   width: 60%;
   height: 100%;
   display: flex;
+  flex-direction: column;
+  color: #fff;
   justify-content: center;
   align-items: center;
 }
+
+.product-about-info h1{
+  letter-spacing: 3px;
+}
+
 
 .product-about-info table {
   color: #fff;
   line-height: 30px;
   width: 80%;
   height: 80%;
+  letter-spacing: 1px;
+}
+
+.product-about-info table img {
+  width: 20px;
+  height: 20px;
 }
 
 .product-about-info table tr h1 {
@@ -82,8 +95,7 @@
 }
 
 .product-about-info table td {
-  outline: 1px solid purple;
-
+  padding: 0px 20px;
 }
 
 .back-to-catalog {

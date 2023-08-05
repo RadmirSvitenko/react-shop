@@ -13,9 +13,9 @@ const ProductsList = () => {
     setProducts(data.products);
   };
 
-  const postProductAboutInfo = () => {
-    localStorage.setItem("productAbout", JSON.stringify());
-  };
+  // const postProductAboutInfo = () => {
+  //   localStorage.setItem("productAbout", JSON.stringify());
+  // };
 
   useEffect(() => {
     getProducts();
@@ -50,7 +50,11 @@ const ProductsList = () => {
                 className="about-product"
                 key={item.id}
                 to={`products/${item.id}`}
-                onClick={postProductAboutInfo}
+                onClick={() => {
+                  {
+                    localStorage.setItem("productAbout", JSON.stringify(item));
+                  }
+                }}
               >
                 Узнать подробнее
               </Link>

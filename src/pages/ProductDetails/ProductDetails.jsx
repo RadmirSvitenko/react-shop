@@ -9,12 +9,14 @@ const ProductDetails = (props) => {
   const params = useParams();
   console.log("Params: ", params);
 
-  // const product = JSON.parse(localStorage.getItem("getAboutProduct"));
-  // console.log("product: ", product);
+  const product = JSON.parse(localStorage.getItem("productAbout"));
+  console.log("product: ", product);
 
   return (
     <div className="main-about-container">
-      <Link className="back-to-catalog" key={1} to={`/`}>Вернутся в каталог</Link>
+      <Link className="back-to-catalog" key={1} to={`/`}>
+        Вернутся в каталог
+      </Link>
       <div className="product-about-container">
         <div className="product-about-image">
           <img src={ratingIcon} className="about-image-main"></img>
@@ -26,43 +28,54 @@ const ProductDetails = (props) => {
           </div>
         </div>
         <div className="product-about-info">
+          <h1>Подробнее о товаре</h1>
           <table>
             <tr>
-              <th>
-                <h1>Подробнее о товаре</h1>
-              </th>
-            </tr>
-            <tr>
               <td>Идентификатор:</td>
-              <td>1</td>
+              <td></td>
+              <td>{product.id}</td>
             </tr>
             <tr>
               <td>Наименование:</td>
-              <td>2</td>
+              <td></td>
+              <td>{product.title}</td>
             </tr>
             <tr>
               <td>Описание:</td>
-              <td>3</td>
+              <td></td>
+              <td>{product.description}</td>
             </tr>
             <tr>
               <td>Скидка на товар</td>
-              <td>4</td>
+              <td></td>
+              <td>{product.discountPercentage}%</td>
             </tr>
             <tr>
               <td>Рейтинг</td>
-              <td>5</td>
+              <td></td>
+              <td>
+                {product.rating} <img src={ratingIcon} />{" "}
+              </td>
             </tr>
             <tr>
               <td>В наличии:</td>
-              <td>6</td>
+              <td></td>
+              <td>{product.stock} ед</td>
             </tr>
             <tr>
               <td>Бренд:</td>
-              <td>7</td>
+              <td></td>
+              <td>{product.brand}</td>
             </tr>
             <tr>
               <td>Категория:</td>
-              <td>8</td>
+              <td></td>
+              <td>{product.category}</td>
+            </tr>
+            <tr>
+              <td>Цена:</td>
+              <td></td>
+              <td>${product.price}</td>
             </tr>
           </table>
         </div>
