@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProductsList.css";
 import ratingIcon from "../../images/rating-icon.svg";
-import searhProducts from "../../components/SearchProducts/SearchProducts";
+import searchIcon from "../../images/search-btn.svg";
+import clearIcon from "../../images/clear-btn.svg";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]); //Хук
@@ -14,14 +15,51 @@ const ProductsList = () => {
     setProducts(data.products);
   };
 
+  let allProductCatalog = [];
+  // let allProductCatalog = getProducts();
+
+  const searchProduct = document.getElementById("search_product");
+  const mainCatalog = document.getElementById("main_catalog");
+
+  const searchProductsCatalog = async (event) => {
+    event.preventDefault();
+    const response = await fetch(
+      "https://dummyjson.com/products/search?q=" + searchProduct.value
+      // "https://dummyjson.com/products/search?q=OPPOF19"
+    );
+    const { products } = await response.json();
+    document.body.removeChild(mainCatalog);
+    allProductCatalog(products);
+  };
+
+  const clearProductsCatalog = () => {
+    searchProduct.value = "";
+    document.body.removeChild(mainCatalog);
+    allProductCatalog();
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
     <div className="main">
-      {searhProducts()}
-      <div className="main-catalog">
+      <div className="search-container">
+        <form onSubmit={searchProductsCatalog}>
+          <input id="search_product" type="text" />
+          <button type="submit" className="button button-search">
+            <img src={searchIcon} />
+          </button>
+          <button
+            onClick={clearProductsCatalog}
+            className="button button-clear"
+          >
+            <img src={clearIcon} />
+          </button>
+        </form>
+      </div>
+
+      <div id="main_catalog" className="main-catalog">
         {products.map((item) => (
           <div className="product-container">
             <div className="image-container">

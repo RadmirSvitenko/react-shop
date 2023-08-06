@@ -1,3 +1,9 @@
+/************** **************/
+
+/*** PRODUCTS LIST ***/
+
+/************** **************/
+
 .main {
   font-family: "Oswald", sans-serif;
   letter-spacing: 1px;
@@ -137,4 +143,83 @@
   background-color: red;
   transition: 0.2s;
   color: #fff;
+}
+
+/************** **************/
+
+/*** SEARCH PRODUCTS ***/
+
+/************** **************/
+
+.search-container {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-container form img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+  margin: 0px 15px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-search {
+  background: transparent;
+  transition: 0.7s;
+  outline: 1px solid black;
+}
+
+.button-search:hover {
+  outline: 1px solid lime;
+  background-color: lime;
+  transition: 0.7s;
+}
+
+.button-clear {
+  background: transparent;
+  outline: 1px solid black;
+  transition: 0.7s;
+}
+
+.button-clear:hover {
+  outline: 1px solid red;
+  background-color: red;
+  transition: 0.7s;
+}
+
+.search-container form input {
+  width: 300px;
+  border: none;
+  background: transparent;
+  outline: 1px solid red;
+  margin: 0px 15px;
+  padding: 10px 20px;
+  transition: 0.5s;
+}
+.search-container form input:focus {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 10px;
+  transition: 0.5s;
+  padding: 10px 30px;
+  background-color: rgb(206, 206, 206);
 }
