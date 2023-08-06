@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./ProductsList.css";
 import ratingIcon from "../../images/rating-icon.svg";
+import searhProducts from "../../components/SearchProducts/SearchProducts";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]); //Хук
@@ -13,16 +14,13 @@ const ProductsList = () => {
     setProducts(data.products);
   };
 
-  // const postProductAboutInfo = () => {
-  //   localStorage.setItem("productAbout", JSON.stringify());
-  // };
-
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
     <div className="main">
+      {searhProducts()}
       <div className="main-catalog">
         {products.map((item) => (
           <div className="product-container">

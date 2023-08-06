@@ -19,12 +19,24 @@ const ProductDetails = (props) => {
       </Link>
       <div className="product-about-container">
         <div className="product-about-image">
-          <img src={ratingIcon} className="about-image-main"></img>
+          <img src={product.images[0]} className="about-image-main"></img>
           <div className="image-other-container">
-            <img src={ratingIcon} className="about-image-other"></img>
-            <img src={ratingIcon} className="about-image-other"></img>
-            <img src={ratingIcon} className="about-image-other"></img>
-            <img src={ratingIcon} className="about-image-other"></img>
+            <img
+              src={product.images[1]}
+              className="about-image-other-one"
+            ></img>
+            <img
+              src={product.images[2]}
+              className="about-image-other-two"
+            ></img>
+            <img
+              src={product.images[3]}
+              className="about-image-other-three"
+            ></img>
+            <img
+              src={product.images[4]}
+              className="about-image-other-four"
+            ></img>
           </div>
         </div>
         <div className="product-about-info">
