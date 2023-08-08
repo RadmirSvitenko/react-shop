@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./ProductDetails.css";
 import ratingIcon from "../../images/rating-icon.svg";
-import ProductsList from "../ProductsList/ProductsList";
+// import ProductsList from "../ProductsList/ProductsList";
 
 const ProductDetails = (props) => {
   const params = useParams();
   console.log("Params: ", params);
 
-  const product = JSON.parse(localStorage.getItem("productAbout"));
-  console.log("product: ", product);
+  const [current, setCurrent] = useState(null);
+
+  const getProduct = async () => {
+    const response = await fetch("https://dummyjson.com/products/" + params.id);
+    const data = await response.json();
+    setCurrent(data);
+  };
+
+  useEffect(() => {
+    console.log("inside");
+    getProduct();
+  }, []);
+
+  if (!current) {
+    return (
+      <div class="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
+      </div>
+    );
+  }
+  // else if(current) {
+  //   return <ProductDetails />
+  // } else {
+  //   return <h1>Error</h1>
+  // }
+
+  // const product = JSON.parse(localStorage.getItem("productAbout"));
+  // console.log("product: ", product);
 
   return (
     <div className="main-about-container">
@@ -19,22 +47,22 @@ const ProductDetails = (props) => {
       </Link>
       <div className="product-about-container">
         <div className="product-about-image">
-          <img src={product.images[0]} className="about-image-main"></img>
+          <img src={current.images[0]} className="about-image-main"></img>
           <div className="image-other-container">
             <img
-              src={product.images[1]}
+              src={current.images[1]}
               className="about-image-other-one"
             ></img>
             <img
-              src={product.images[2]}
+              src={current.images[2]}
               className="about-image-other-two"
             ></img>
             <img
-              src={product.images[3]}
+              src={current.images[3]}
               className="about-image-other-three"
             ></img>
             <img
-              src={product.images[4]}
+              src={current.images[4]}
               className="about-image-other-four"
             ></img>
           </div>
@@ -45,49 +73,49 @@ const ProductDetails = (props) => {
             <tr>
               <td>Идентификатор:</td>
               <td></td>
-              <td>{product.id}</td>
+              <td>{current.id}</td>
             </tr>
             <tr>
               <td>Наименование:</td>
               <td></td>
-              <td>{product.title}</td>
+              <td>{current.title}</td>
             </tr>
             <tr>
               <td>Описание:</td>
               <td></td>
-              <td>{product.description}</td>
+              <td>{current.description}</td>
             </tr>
             <tr>
               <td>Скидка на товар</td>
               <td></td>
-              <td>{product.discountPercentage}%</td>
+              <td>{current.discountPercentage}%</td>
             </tr>
             <tr>
               <td>Рейтинг</td>
               <td></td>
               <td>
-                {product.rating} <img src={ratingIcon} />{" "}
+                {current.rating} <img src={ratingIcon} />{" "}
               </td>
             </tr>
             <tr>
               <td>В наличии:</td>
               <td></td>
-              <td>{product.stock} ед</td>
+              <td>{current.stock} ед</td>
             </tr>
             <tr>
               <td>Бренд:</td>
               <td></td>
-              <td>{product.brand}</td>
+              <td>{current.brand}</td>
             </tr>
             <tr>
               <td>Категория:</td>
               <td></td>
-              <td>{product.category}</td>
+              <td>{current.category}</td>
             </tr>
             <tr>
               <td>Цена:</td>
               <td></td>
-              <td>${product.price}</td>
+              <td>${current.price}</td>
             </tr>
           </table>
         </div>

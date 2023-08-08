@@ -15,27 +15,24 @@ const ProductsList = () => {
     setProducts(data.products);
   };
 
-  let allProductCatalog = [];
-  // let allProductCatalog = getProducts();
+  // const toDetails = (item) => () => {
+  //   localStorage.setItem("productAbout", JSON.stringify(item));
+  // };
 
   const searchProduct = document.getElementById("search_product");
-  const mainCatalog = document.getElementById("main_catalog");
 
   const searchProductsCatalog = async (event) => {
     event.preventDefault();
     const response = await fetch(
       "https://dummyjson.com/products/search?q=" + searchProduct.value
-      // "https://dummyjson.com/products/search?q=OPPOF19"
     );
     const { products } = await response.json();
-    document.body.removeChild(mainCatalog);
-    allProductCatalog(products);
+    setProducts(products);
   };
 
   const clearProductsCatalog = () => {
     searchProduct.value = "";
-    document.body.removeChild(mainCatalog);
-    allProductCatalog();
+    getProducts();
   };
 
   useEffect(() => {
@@ -59,7 +56,7 @@ const ProductsList = () => {
         </form>
       </div>
 
-      <div id="main_catalog" className="main-catalog">
+      <div className="main-catalog">
         {products.map((item) => (
           <div className="product-container">
             <div className="image-container">
@@ -86,11 +83,7 @@ const ProductsList = () => {
                 className="about-product"
                 key={item.id}
                 to={`products/${item.id}`}
-                onClick={() => {
-                  {
-                    localStorage.setItem("productAbout", JSON.stringify(item));
-                  }
-                }}
+                // onClick={toDetails(item)}
               >
                 Узнать подробнее
               </Link>
