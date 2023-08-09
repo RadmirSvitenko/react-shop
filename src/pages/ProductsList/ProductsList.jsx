@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import "./ProductsList.css";
 import ratingIcon from "../../images/rating-icon.svg";
 import searchIcon from "../../images/search-btn.svg";
 import clearIcon from "../../images/clear-btn.svg";
+import "../../components/SwitchTheme/SwitchTheme.css";
+import { ThemeContext } from "../../App";
+// import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]); //Хук
+  const { theme } = useContext(ThemeContext);
+  console.log("Theme: ", theme);
 
   const getProducts = async () => {
     const response = await fetch("https://dummyjson.com/products");
@@ -14,10 +20,6 @@ const ProductsList = () => {
     console.log(data);
     setProducts(data.products);
   };
-
-  // const toDetails = (item) => () => {
-  //   localStorage.setItem("productAbout", JSON.stringify(item));
-  // };
 
   const searchProduct = document.getElementById("search_product");
 
@@ -39,10 +41,14 @@ const ProductsList = () => {
     getProducts();
   }, []);
 
+  const themeModProductContainer = `product-container-${theme}`;
+  const themeModProductContainerAboutButtton = `about-product-${theme}`;
+
   return (
     <div className="main">
+      <Header />
       <div className="search-container">
-        <form onSubmit={searchProductsCatalog}>
+        <form className="search-form" onSubmit={searchProductsCatalog}>
           <input id="search_product" type="text" />
           <button type="submit" className="button button-search">
             <img src={searchIcon} />
@@ -58,7 +64,8 @@ const ProductsList = () => {
 
       <div className="main-catalog">
         {products.map((item) => (
-          <div className="product-container">
+          // className productContainer
+          <div className={themeModProductContainer}>
             <div className="image-container">
               <img key={1} src={item.images[0]} />
             </div>
@@ -79,8 +86,10 @@ const ProductsList = () => {
                   ${item.price}
                 </span>
               </div>
+
+              {/* className about-product */}
               <Link
-                className="about-product"
+                className={themeModProductContainerAboutButtton}
                 key={item.id}
                 to={`products/${item.id}`}
                 // onClick={toDetails(item)}
@@ -91,6 +100,7 @@ const ProductsList = () => {
           </div>
         ))}
       </div>
+      {/* <Footer /> */}
     </div>
   );
 };

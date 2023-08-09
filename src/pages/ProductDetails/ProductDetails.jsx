@@ -18,7 +18,6 @@ const ProductDetails = (props) => {
   };
 
   useEffect(() => {
-    console.log("inside");
     getProduct();
   }, []);
 
