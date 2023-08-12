@@ -3,12 +3,33 @@ import { ThemeContext } from "../../App";
 
 const SwitchTheme = () => {
   const { handleThemeChange } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
+
+  let switchStyle = "";
+
+  const SwitchSave = () => {
+    // const checkStyleSwitch = localStorage.getItem("themeMod");
+    const checkStyleSwitch = theme;
+
+    if (checkStyleSwitch === "ligth") {
+      switchStyle = "switch-check-dark";
+      console.log("switchStyle: ", switchStyle);
+    } else {
+      switchStyle = "switch-check-light";
+      console.log("switchStyle: ", switchStyle);
+    }
+  };
 
   return (
     <div className="switch-container">
       <form>
         <label className="switch">
-          <input type="checkbox" onChange={handleThemeChange} />
+          <input
+            className={switchStyle}
+            onClick={SwitchSave}
+            type="checkbox"
+            onChange={handleThemeChange}
+          />
           <span className="slider round"></span>
         </label>
       </form>

@@ -6,11 +6,10 @@ import searchIcon from "../../images/search-btn.svg";
 import clearIcon from "../../images/clear-btn.svg";
 import "../../components/SwitchTheme/SwitchTheme.css";
 import { ThemeContext } from "../../App";
-// import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 
 const ProductsList = () => {
-  const [products, setProducts] = useState([]); //Хук
+  const [products, setProducts] = useState([]);
   const { theme } = useContext(ThemeContext);
   console.log("Theme: ", theme);
 
@@ -51,13 +50,13 @@ const ProductsList = () => {
         <form className="search-form" onSubmit={searchProductsCatalog}>
           <input id="search_product" type="text" />
           <button type="submit" className="button button-search">
-            <img src={searchIcon} />
+            <img src={searchIcon} alt="Изображение иконки товара" />
           </button>
           <button
             onClick={clearProductsCatalog}
             className="button button-clear"
           >
-            <img src={clearIcon} />
+            <img src={clearIcon} alt="Изображение иконки товара" />
           </button>
         </form>
       </div>
@@ -66,8 +65,9 @@ const ProductsList = () => {
         {products.map((item) => (
           // className productContainer
           <div className={themeModProductContainer}>
+            {/* <div className="product-container-"> */}
             <div className="image-container">
-              <img key={1} src={item.images[0]} />
+              <img key={1} src={item.images[0]} alt="Изображение товара" />
             </div>
             <div className="info-container">
               <div>
@@ -80,7 +80,8 @@ const ProductsList = () => {
               </div>
               <div>
                 <span key={4} className="product-element product-rating">
-                  {item.rating} <img src={ratingIcon} />
+                  {item.rating}
+                  <img src={ratingIcon} alt="Изображение товара" />
                 </span>
                 <span key={5} className="product-element product-price">
                   ${item.price}
@@ -90,9 +91,9 @@ const ProductsList = () => {
               {/* className about-product */}
               <Link
                 className={themeModProductContainerAboutButtton}
-                key={item.id}
+                // className="button-link"
                 to={`products/${item.id}`}
-                // onClick={toDetails(item)}
+                // to={"product/" + item.id}
               >
                 Узнать подробнее
               </Link>
@@ -100,11 +101,8 @@ const ProductsList = () => {
           </div>
         ))}
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };
-
-ProductsList.propTypes = {};
 
 export default ProductsList;
