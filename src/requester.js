@@ -1,10 +1,8 @@
-import axios from "axios";
+export const API_PRODUCTS = "https://dummyjson.com/products?limit=100";
+export const API_COMMENTS = "https://dummyjson.com/comments?limit=100";
 
-export const BASE_API = `https://dummyjson.com`;
-export const PRODUCTS_LIST_API = `https://dummyjson.com/products`;
-export const PRODUCT_CATEGORY = `https://dummyjson.com/products/category/`;
+// const API = axios.create({
+//   baseURL: "https://dummyjson.com/products",
+// });
 
-export const getAllProducts = async () => {
-  const response = await axios.get(PRODUCTS_LIST_API);
-  return response.data.products;
-};
+// export default API;
